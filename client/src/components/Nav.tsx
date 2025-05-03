@@ -20,7 +20,7 @@ function Nav() {
         <>
             <header className='sm:border-b-[1px] sm:border-green-400/30 sm:h-14 w-[100%] mb-3 bg-white/90 fixed z-20 top-0 right-0'>
                 <nav className='webNav flex justify-between items-center px-4'>
-                    <h1 className='text-green-400/30 font-mono text-3xl flex'>
+                    <h1 className='text-green-400/30 font-mono text-lg font-bold sm:font-medium  sm:text-3xl flex'>
                         {
                             // Animated Logo  
                             ["B", "a", "k", "o", "P", "e", "t"].map((letter, index) => (
