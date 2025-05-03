@@ -60,7 +60,7 @@ function Home() {
         >
             {
                 products.map((item) => (
-                    <Item _id={item._id} key={item.id} imageUrl={item.imageUrl} name={item.name} price={item.price} category={item.category} animalTYpe={item.animalType} />
+                    <Item _id={item._id} key={item._id} imageUrl={item.imageUrl} name={item.name} price={item.price} category={item.category} animalTYpe={item.animalTYpe} />
                 ))
             }
         </div>
