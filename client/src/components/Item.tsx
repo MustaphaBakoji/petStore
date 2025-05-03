@@ -10,7 +10,7 @@ import { RootState } from '../redux'
 function Item(prop: ItemTypes) {
     const dispatch = useDispatch()
     const { user } = useSelector((state: RootState) => (state.userReducer))
-    const { imageUrl, name, price, animalTYpe, id } = prop
+    const { imageUrl, name, price, animalTYpe, _id } = prop
     const animalStyle: string = " text-green-400 w-5 h-5 absolute right-6 top-6"
     return (
         <div className=' w-[40vw] sm:w-64 sm:h-[21rem]   rounded-md border-[1px] border-blue-950/30 relative '>
@@ -45,7 +45,7 @@ function Item(prop: ItemTypes) {
                                 imageUrl,
                                 price,
                                 animalTYpe,
-                                _id: id,
+                                _id: _id,
                                 category: "toys"
 
                             }))
