@@ -6,6 +6,7 @@ import cors from "cors"
 import { indexRouter } from "../routes/index.js"
 import cloudinary from "cloudinary"
 
+
 const app = express()
 dotenv.config()
 app.use(express.json())
