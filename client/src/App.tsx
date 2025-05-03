@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div>
-      {/*       
+
       {showError && <Error statusCode={error && error.statusCode} message={error && error.message} />}
       <Nav />
 
@@ -32,8 +32,8 @@ function App() {
       {showCArt && <Carts />}
       <Home />
       {showLogin && <Login />}
-      {showSignUp && <SignUp />} */}
-      <AddNewProduct />
+      {showSignUp && <SignUp />}
+      {/* <AddNewProduct /> */}
     </div>
   )
 }
