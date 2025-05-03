@@ -4,7 +4,7 @@ import { getProducts, getProductsByCategory, getProductsByCategoryAndAnimalType,
 export let productRouter = Router()
 productRouter.get("/", getProducts)
 productRouter.get("/:id", Product)
-productRouter.get('/:category', getProductsByCategory)
-productRouter.get('/:category/:animalType', getProductsByCategoryAndAnimalType)
 
+productRouter.get('/:category/:animalType', getProductsByCategoryAndAnimalType)
+productRouter.get('/:category', getProductsByCategory)
 
