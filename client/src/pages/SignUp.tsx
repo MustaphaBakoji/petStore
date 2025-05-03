@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { ToggleLogin, ToggleSignUp } from '../redux/popUPSlice';
 import { setUser } from '../redux/userSlice';
 import { setErrors } from '../redux/errorSlice';
-const ROOT_URL = "http://localhost:4000/api"//vegapp-1.onrender.com"
+const ROOT_URL = "https://petstore-des0.onrender.com/api"//vegapp-1.onrender.com"
 
 const SignUp = () => {
     const dispatch = useDispatch()

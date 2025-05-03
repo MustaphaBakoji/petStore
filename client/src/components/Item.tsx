@@ -28,7 +28,7 @@ function Item(prop: ItemTypes) {
                     <BsCart className=' text-green-400 w-6 h-6' onClick={async () => {
                         if (user) {
                             try {
-                                const res = await fetch(`http://localhost:4000/api/carts/add/${_id}`, {
+                                const res = await fetch(`https://petstore-des0.onrender.com/api/carts/add/${_id}`, {
                                     method: "POST",
                                     credentials: "include"
                                 })

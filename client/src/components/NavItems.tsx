@@ -39,7 +39,7 @@ function NavItems() {
                 onClick={async () => {
                     try {
 
-                        const response = await fetch(`http://localhost:4000/api/products/food/${animal}`)
+                        const response = await fetch(`https://petstore-des0.onrender.com/api/products/food/${animal}`)
 
                         if (response.ok) {
                             let data = await response.json()
@@ -66,7 +66,7 @@ function NavItems() {
                 onClick={async () => {
                     try {
 
-                        const response = await fetch(`http://localhost:4000/api/products/toys/${animal}`)
+                        const response = await fetch(`https://petstore-des0.onrender.com/api/products/toys/${animal}`)
 
                         if (response.ok) {
                             let data = await response.json()
@@ -92,7 +92,7 @@ function NavItems() {
                 onClick={async () => {
                     try {
 
-                        const response = await fetch(`http://localhost:4000/api/products/accessories/${animal}`)
+                        const response = await fetch(`https://petstore-des0.onrender.com/api/products/accessories/${animal}`)
 
                         if (response.ok) {
                             let data = await response.json()

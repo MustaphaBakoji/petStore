@@ -29,7 +29,7 @@ function CartItem(props: CartItemTypes) {
                     <button className='sm:w-8 sm:h-8 w-4 h-4 font-bold flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300'
                         onClick={async () => {
                             try {
-                                const res = await fetch(`http://localhost:4000/api/carts/add/${product._id}`, { method: "POST", credentials: "include", })
+                                const res = await fetch(`https://petstore-des0.onrender.com/api/carts/add/${product._id}`, { method: "POST", credentials: "include", })
                                 const data = await res.json()
                                 console.log(data);
 
@@ -49,7 +49,7 @@ function CartItem(props: CartItemTypes) {
                         onClick={async () => {
 
                             try {
-                                const res = await fetch(`http://localhost:4000/api/carts/minus/${product._id}`, { method: "DELETE", credentials: "include", })
+                                const res = await fetch(`https://petstore-des0.onrender.com/api/carts/minus/${product._id}`, { method: "DELETE", credentials: "include", })
                                 const data = await res.json()
                                 console.log(data);
 
@@ -75,7 +75,7 @@ function CartItem(props: CartItemTypes) {
             <BsTrash className='text-blue-400 cursor-pointer hover:text-red-700 ml-4'
                 onClick={async () => {
                     try {
-                        const res = await fetch(`http://localhost:4000/api/carts/delete/${product._id}`, { method: "DELETE", credentials: "include", })
+                        const res = await fetch(`https://petstore-des0.onrender.com/api/carts/delete/${product._id}`, { method: "DELETE", credentials: "include", })
                         const data = await res.json()
                         console.log(data);
 
