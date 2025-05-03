@@ -24,7 +24,7 @@ function App() {
   return (
     <div>
 
-      {showError && <Error statusCode={error && error.statusCode} message={error && error.message} />}
+      {showError && <Error statusCode={error ? error.statusCode : 500} message={error ? error.message : "ann erro occured "} />}
       <Nav />
 
       <Sidebar />
