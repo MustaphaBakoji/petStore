@@ -9,4 +9,5 @@ indexRouter.use("/users", userRouter)
 indexRouter.use('/products', productRouter)
 indexRouter.use('/carts', cartRouter)
 indexRouter.use('/admin', adminRouter)
+
 // console.log(indexRouter.stack.map(r => r.route?.path));

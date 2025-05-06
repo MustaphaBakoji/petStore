@@ -1,11 +1,12 @@
 
 import { BsCart, BsSearch } from "react-icons/bs";
-import { FaBars, FaTimes, FaUser, FaUserLock } from "react-icons/fa";
+import { FaBars, FaPlus, FaTimes, FaUser, FaUserLock } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { ToggleCart, ToggleLogin, ToggleSignUp } from "../redux/popUPSlice";
 import { RootState } from "../redux";
-
+import { LiaUserShieldSolid } from "react-icons/lia";
+import { setAddProduct } from "../redux/admin";
 function Nav() {
 
 
@@ -13,6 +14,8 @@ function Nav() {
 
     const dispatch = useDispatch()
     const { user } = useSelector((state: RootState) => (state.userReducer))
+    const { admin } = useSelector((state: RootState) => (state.adminReducer))
+
     const cartLength = useSelector((state: RootState) => (state.cartReducer.length))
 
 
@@ -49,13 +52,17 @@ function Nav() {
                         <p className=''><span className=" ">contactUs </span> </p>
                     </div>
                     <div className="flex relative mr-10">
-                        {user ? <FaUser className=" w-8 h-8 px-1 text-green-400" /> : <FaUserLock className=" w-8 h-8 px-1 text-green-400" onClick={() => { dispatch(ToggleSignUp()) }} />}
-                        {user && <> <BsCart className=" w-8 h-8  text-green-400"
+                        {admin ? <LiaUserShieldSolid className=" w-10 h-10 px-1 text-green-400" /> : user ? <FaUser className=" w-8 h-8 px-1 text-green-400" /> : <FaUserLock className=" w-8 h-8 px-1 text-green-400" onClick={() => { dispatch(ToggleSignUp()) }} />}
+                        {admin ? <FaPlus className=" w-5 h-5 font-bold sm:w-8 sm:h-8 text-green-400" onClick={() => {
+                            console.log("add product");
+
+                            dispatch(setAddProduct())
+                        }} /> : user ? <> <BsCart className=" w-8 h-8  text-green-400"
                             onClick={() => {
                                 dispatch(ToggleCart())
                             }}
                         />
-                            <span className=" absolute right-2 top-0.5 ">{cartLength < 99 ? cartLength : "99+"}</span></>
+                            <span className=" absolute right-2 top-0.5 ">{cartLength < 99 ? cartLength : "99+"}</span></> : ""
                         }
 
                     </div>

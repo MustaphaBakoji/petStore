@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { MdCloudUpload } from 'react-icons/md';
+import { ItemTypes } from '../types/ItemType';
 import { useDispatch } from 'react-redux';
 import { sethome } from '../redux/admin';
 
@@ -14,8 +15,9 @@ interface NewProduct {
 }
 const ROOT_URL = "https://petstore-des0.onrender.com/api"//vegapp-1.onrender.com"
 
-const AddNewProduct: React.FC = () => {
+const UpadateProduct = (props: ItemTypes) => {
     const dispatch = useDispatch()
+    const { name, price, imageUrl, category, _id, animalTYpe } = props
     const [product, setProduct] = useState<NewProduct>({
         name: '',
 
@@ -23,7 +25,6 @@ const AddNewProduct: React.FC = () => {
         category: '',
         animalType: '', // initialize
         image: '',
-
     });
 
     const [imagePreview, setImagePreview] = useState<string>('');
@@ -64,8 +65,8 @@ const AddNewProduct: React.FC = () => {
         setLoading(true);
         try {
             console.log('Product data:', product);
-            const response = await fetch(`${ROOT_URL}/admin`, {
-                method: 'POST',
+            const response = await fetch(`${ROOT_URL}/admin/${_id}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -97,7 +98,7 @@ const AddNewProduct: React.FC = () => {
     };
 
     return (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6 w-full h-full bg-white/85 mx-auto fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-[200]">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6 max-w-4xl mx-auto">
             <div className="bg-white rounded-lg shadow-lg p-8">
                 <h2 className="text-3xl font-bold mb-6">Add New Pet Product</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -108,7 +109,7 @@ const AddNewProduct: React.FC = () => {
                             <input
                                 type="text"
                                 name="name"
-                                value={product.name}
+                                value={name}
                                 onChange={handleInputChange}
                                 className="w-full p-2 border border-green-500 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                 required
@@ -119,7 +120,7 @@ const AddNewProduct: React.FC = () => {
                             <label className="block text-sm font-medium mb-2 ">Category</label>
                             <select
                                 name="category"
-                                value={product.category}
+                                value={category}
                                 onChange={handleInputChange}
                                 className="w-full p-2 border rounded-md border-green-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required
@@ -137,7 +138,7 @@ const AddNewProduct: React.FC = () => {
                             <label className="block text-sm font-medium mb-2">Animal Type</label>
                             <select
                                 name="animalType"
-                                value={product.animalType}
+                                value={animalTYpe}
                                 onChange={handleInputChange}
                                 className=" border-green-500 w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required
@@ -154,7 +155,7 @@ const AddNewProduct: React.FC = () => {
                             <input
                                 type="number"
                                 name="price"
-                                value={product.price}
+                                value={price}
                                 onChange={handleInputChange}
                                 className=" border-green-500 w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required
@@ -175,13 +176,17 @@ const AddNewProduct: React.FC = () => {
                                 className="hidden"
                                 accept="image/*"
                                 onChange={handleImageUpload}
+
+
                             />
                         </label>
-                        {imagePreview && (
+                        {imagePreview ? (
                             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-4">
                                 <img src={imagePreview} alt="Preview" className="max-w-[200px] max-h-[200px] object-contain" />
                             </motion.div>
-                        )}
+                        ) : <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-4">
+                            <img src={imageUrl} alt="Preview" className="max-w-[200px] max-h-[200px] object-contain" />
+                        </motion.div>}
                     </div>
 
                     {/* Submit Button */}
@@ -192,7 +197,7 @@ const AddNewProduct: React.FC = () => {
                         disabled={loading}
                         className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {loading ? 'Adding Product...' : 'Add Product'}
+                        {loading ? 'updating  Product...' : 'UPDATE Product'}
                     </motion.button>
                 </form>
             </div>
@@ -200,4 +205,4 @@ const AddNewProduct: React.FC = () => {
     );
 };
 
-export default AddNewProduct;
+export default UpadateProduct;

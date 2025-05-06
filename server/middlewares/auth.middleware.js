@@ -27,7 +27,7 @@ export let authMiddleware = (req, res, next) => {
         })
     }
 }
-let adminMiddleware = (req, res, next) => {
+export let adminMiddleware = (req, res, next) => {
     let token = req.cookies.jwt
     if (token) {
         let payload = jwt.verify(token, process.env.JWT_SECRET)

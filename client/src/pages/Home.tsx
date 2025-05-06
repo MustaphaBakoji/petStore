@@ -35,7 +35,7 @@ function Home() {
 
                 const response = await fetch('https://petstore-des0.onrender.com/api/carts', { method: "GET", credentials: "include" })
 
-                console.log('what');
+
 
                 if (response.ok) {
                     const data = await response.json()
@@ -55,7 +55,7 @@ function Home() {
     const products = useSelector((state: RootState) => state.productsReducer)
 
     return (
-        <div className=' absolute top-24 sm:left-72 grid-cols-2 grid sm:grid-cols-3 gap-x-3 sm:gap-x-20 gap-y-3 ml-8'
+        <div className=' absolute top-24 sm:left-72 grid-cols-2 grid sm:grid-cols-3 place-items-center gap-x-3 sm:gap-x-20 gap-y-3 ml-8'
 
         >
             {

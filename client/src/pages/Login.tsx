@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { ToggleLogin, ToggleSignUp } from '../redux/popUPSlice';
 import { setUser } from '../redux/userSlice';
 import { setErrors } from '../redux/errorSlice';
+import { setAdmin } from '../redux/admin';
 const ROOT_URL = "https://petstore-des0.onrender.com/api"//vegapp-1.onrender.com"
 
 const Login = () => {
@@ -34,6 +35,12 @@ const Login = () => {
 
             }).then((res) => (res.json())).then(data => {
                 if (data.success) {
+                    console.log('Login successful:', data.data);
+                    if (data.data.role === "admin") {
+                        dispatch(setAdmin())
+
+                    }
+
                     dispatch(setUser(data.data))
 
                 }
