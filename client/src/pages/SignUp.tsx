@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { ToggleLogin, ToggleSignUp } from '../redux/popUPSlice';
 import { setUser } from '../redux/userSlice';
 import { setErrors } from '../redux/errorSlice';
+import { setLoading } from '../redux/loadingSlice';
 const ROOT_URL = "https://petstore-des0.onrender.com/api"//vegapp-1.onrender.com"
 
 const SignUp = () => {
@@ -25,7 +26,7 @@ const SignUp = () => {
         console.log("started");
 
         try {
-
+            dispatch(setLoading(true))
             fetch(`${ROOT_URL}/users/signUp`, {
                 method: "POST",
                 credentials: "include",
@@ -35,12 +36,14 @@ const SignUp = () => {
 
             }).then((res) => (res.json())).then(data => {
                 if (data.success) {
+                    dispatch(setLoading(false))
                     dispatch(setUser(data.data))
 
                 }
 
             })
         } catch (error) {
+            setLoading(false)
 
             dispatch(setErrors({ statusCode: 500, message: "email or name already exist use another" }))
 

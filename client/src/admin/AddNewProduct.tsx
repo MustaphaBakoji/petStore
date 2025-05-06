@@ -6,28 +6,28 @@ import { sethome } from '../redux/admin';
 
 interface NewProduct {
     name: string;
-
     price: number;
     category: string;
     animalType: string; // new field
     image: string;
 }
-const ROOT_URL = "https://petstore-des0.onrender.com/api"//vegapp-1.onrender.com"
+
+const ROOT_URL = "https://petstore-des0.onrender.com/api"; //vegapp-1.onrender.com"
+const MAX_FILE_SIZE = 4 * 1024 * 1024; // 4MB in bytes
 
 const AddNewProduct: React.FC = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [product, setProduct] = useState<NewProduct>({
         name: '',
-
         price: 0,
         category: '',
         animalType: '', // initialize
         image: '',
-
     });
 
     const [imagePreview, setImagePreview] = useState<string>('');
     const [loading, setLoading] = useState(false);
+    const [fileError, setFileError] = useState<string | null>(null); // State for file size error
 
     const categories = ['toys', 'food', 'Accessories'];
     const animalTypes = ['dogs', 'cats', 'birds', 'fish'];
@@ -44,11 +44,24 @@ const AddNewProduct: React.FC = () => {
 
     const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
+        setFileError(null); // Clear previous errors
+
         if (file) {
+            if (file.size > MAX_FILE_SIZE) {
+                setFileError('File size exceeds the 4MB limit.');
+                // Clear the input value so the same file can be selected again after error
+                e.target.value = '';
+                setImagePreview('');
+                setProduct((prev) => ({
+                    ...prev,
+                    image: '',
+                }));
+                return; // Stop further processing
+            }
+
             const reader = new FileReader();
             reader.onloadend = () => {
                 const base64String = reader.result as string;
-
                 setImagePreview(base64String);
                 setProduct((prev) => ({
                     ...prev,
@@ -61,6 +74,12 @@ const AddNewProduct: React.FC = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (fileError) {
+            console.log("Cannot submit due to file size error.");
+            return; // Prevent submission if there's a file size error
+        }
+
         setLoading(true);
         try {
             console.log('Product data:', product);
@@ -77,15 +96,13 @@ const AddNewProduct: React.FC = () => {
                 // Reset
                 setProduct({
                     name: '',
-
                     price: 0,
                     category: '',
                     animalType: '',
                     image: '',
                 });
                 setImagePreview('');
-                dispatch(sethome())
-
+                dispatch(sethome());
             } else {
                 console.log(`Error: ${result.message || 'Failed to add product'}`);
             }
@@ -162,9 +179,6 @@ const AddNewProduct: React.FC = () => {
                         </div>
                     </div>
 
-
-
-
                     {/* Image Upload */}
                     <div>
                         <label className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50">
@@ -177,7 +191,16 @@ const AddNewProduct: React.FC = () => {
                                 onChange={handleImageUpload}
                             />
                         </label>
-                        {imagePreview && (
+                        {fileError && (
+                            <motion.p
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="mt-2 text-red-500 text-sm"
+                            >
+                                {fileError}
+                            </motion.p>
+                        )}
+                        {imagePreview && !fileError && ( // Only show preview if no file error
                             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-4">
                                 <img src={imagePreview} alt="Preview" className="max-w-[200px] max-h-[200px] object-contain" />
                             </motion.div>
@@ -189,7 +212,7 @@ const AddNewProduct: React.FC = () => {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         type="submit"
-                        disabled={loading}
+                        disabled={loading || !!fileError} // Disable if loading or fileError exists
                         className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {loading ? 'Adding Product...' : 'Add Product'}

@@ -6,12 +6,14 @@ import cors from "cors"
 import path from "path"
 import { indexRouter } from "../routes/index.js"
 import cloudinary from "cloudinary"
-
+import bodyParser from "body-parser"
 
 const app = express()
 dotenv.config()
 app.use(express.json())
 app.use(cookieParser())
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 cloudinary.v2.config({
     cloud_name: process.env.CLOUDINARY_NAME,

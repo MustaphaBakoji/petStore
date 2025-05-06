@@ -4,6 +4,7 @@ import { ToggleLogin, ToggleSignUp } from '../redux/popUPSlice';
 import { setUser } from '../redux/userSlice';
 import { setErrors } from '../redux/errorSlice';
 import { setAdmin } from '../redux/admin';
+import { setLoading } from '../redux/loadingSlice';
 const ROOT_URL = "https://petstore-des0.onrender.com/api"//vegapp-1.onrender.com"
 
 const Login = () => {
@@ -24,7 +25,7 @@ const Login = () => {
         e.preventDefault();
         console.log('Login attempt:', formData);
         try {
-
+            dispatch(setLoading(true))
             fetch(`${ROOT_URL}/users/login`, {
                 method: "POST",
                 credentials: "include",
@@ -36,6 +37,7 @@ const Login = () => {
             }).then((res) => (res.json())).then(data => {
                 if (data.success) {
                     console.log('Login successful:', data.data);
+                    dispatch(setLoading(false))
                     if (data.data.role === "admin") {
                         dispatch(setAdmin())
 
@@ -45,11 +47,13 @@ const Login = () => {
 
                 }
                 else {
+                    dispatch(setLoading(false))
                     dispatch(setErrors({ statusCode: 401, message: data.message }))
                 }
 
             })
         } catch (error) {
+            dispatch(setLoading(false))
             console.log(error);
 
             dispatch(setErrors({ statusCode: 500, message: "opps ! an erroor occureed " }))

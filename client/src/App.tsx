@@ -15,6 +15,7 @@ import Error from './pages/Error'
 import AdminItem from './admin/adminItem'
 import UpdateProduct from './admin/UpdateItem'
 import AdminHome from './admin/AdminHome'
+import Loader from './components/Loader'
 
 function App() {
   const showLogin = useSelector((state: RootState) => state.popUpReducer.Login)
@@ -31,6 +32,7 @@ function App() {
     home,
     admin
   } = useSelector((state: RootState) => state.adminReducer);
+  const { isLoading } = useSelector((state: RootState) => state.loadinReducer)
 
 
 
@@ -48,7 +50,7 @@ function App() {
       {!admin && <Sidebar />}
       {home ? <AdminHome /> : <Home />}
       {showCArt && <Carts />}
-
+      {isLoading && <Loader />}
       {showLogin && <Login />}
       {showSignUp && <SignUp />}
       {addProduct &&

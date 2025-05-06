@@ -5,8 +5,9 @@ import cartReducer from "./cartSlice"
 import userReducer from "./userSlice"
 import adminReducer from "./admin"
 import errorReducer from "./errorSlice"
+import loadinReducer from "./loadingSlice"
 export const store = configureStore({
-    reducer: { productsReducer, popUpReducer, cartReducer, userReducer, adminReducer, errorReducer },
+    reducer: { productsReducer, popUpReducer, cartReducer, userReducer, adminReducer, errorReducer, loadinReducer },
 
 })
 export type RootState = ReturnType<typeof store.getState>
