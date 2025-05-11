@@ -65,6 +65,7 @@ function Loader() {
                         ease: "easeInOut"
                     }}
                 ></motion.div>
+
                 <motion.div
                     className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-500 rounded-full" // Bottom dot
                     variants={dotVariants}
