@@ -5,6 +5,7 @@ import { ItemTypes } from '../types/ItemType'
 import { useDispatch, useSelector, } from 'react-redux'
 import { addToCart } from '../redux/cartSlice'
 import { RootState } from '../redux'
+import { setProduct } from '../redux/ProductSlice'
 
 
 function Item(prop: ItemTypes) {
@@ -13,7 +14,16 @@ function Item(prop: ItemTypes) {
     const { imageUrl, name, price, animalTYpe, _id } = prop
     const animalStyle: string = " text-green-400 w-5 h-5 absolute right-6 top-6"
     return (
-        <div className=' w-[40vw] sm:w-64 sm:h-[21rem]   rounded-md border-[1px] border-blue-950/30 relative '>
+        <div className=' w-[40vw] sm:w-64 sm:h-[21rem]   rounded-md border-[1px] border-blue-950/30 relative ' onClick={() => {
+            dispatch(setProduct({
+                imageUrl,
+                name,
+                price,
+
+                id: _id,
+
+            }))
+        }}    >
             <div className=' image w-[35vw] h-[35vw] sm:w-60  sm:h-60 mx-auto mt-4 relative '>
                 <img src={imageUrl} alt="cat" className='w-[35vw] h-[35vw] sm:h-60 mx-6 mx-auto rounded-md' />
                 {

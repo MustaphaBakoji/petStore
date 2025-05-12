@@ -8,14 +8,14 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import { RootState } from './redux'
 import SignUp from './pages/SignUp'
-import CartItem from './components/cartItem'
+
 import Carts from './pages/Carts'
 import AddNewProduct from './admin/AddNewProduct'
 import Error from './pages/Error'
-import AdminItem from './admin/adminItem'
 import UpdateProduct from './admin/UpdateItem'
 import AdminHome from './admin/AdminHome'
 import Loader from './components/Loader'
+import { ProductCard } from './components/Product'
 
 function App() {
   const showLogin = useSelector((state: RootState) => state.popUpReducer.Login)

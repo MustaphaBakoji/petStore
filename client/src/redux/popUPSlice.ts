@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     Login: false,
     SignUp: false,
-    Cart: false
+    Cart: false,
+    showProduct: false,
 }
 const PopUpsSlice = createSlice({
     name: "popUp",
@@ -20,7 +21,11 @@ const PopUpsSlice = createSlice({
         ToggleCart: (state) => {
             state.Cart = !state.Cart
 
-        }
+        },
+        ToggleProduct: (state) => {
+            state.showProduct = !state.showProduct
+
+        },
 
     }
 })
