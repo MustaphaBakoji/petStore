@@ -16,6 +16,9 @@ import UpdateProduct from './admin/UpdateItem'
 import AdminHome from './admin/AdminHome'
 import Loader from './components/Loader'
 import { ProductCard } from './components/Product'
+import { Route, Routes } from 'react-router-dom'
+import Contact from './pages/Contactc'
+import About from './pages/About'
 
 function App() {
   const showLogin = useSelector((state: RootState) => state.popUpReducer.Login)
@@ -42,26 +45,34 @@ function App() {
 
 
   return (
-    <div>
+    <Routes>
+      <Route path="/" element={
+        <div>
 
-      {showError && <Error statusCode={error ? error.statusCode : 500} message={error ? error.message : "ann erro occured "} />}
-      <Nav />
+          {showError && <Error statusCode={error ? error.statusCode : 500} message={error ? error.message : "ann erro occured "} />}
+          <Nav />
 
-      {!admin && <Sidebar />}
-      {home ? <AdminHome /> : <Home />}
-      {showCArt && <Carts />}
-      {isLoading && <Loader />}
-      {showLogin && <Login />}
-      {showSignUp && <SignUp />}
-      {addProduct &&
-        <AddNewProduct />
-      }
+          {!admin && <Sidebar />}
+          {home ? <AdminHome /> : <Home />}
+          {showCArt && <Carts />}
+          {isLoading && <Loader />}
+          {showLogin && <Login />}
+          {showSignUp && <SignUp />}
+          {addProduct &&
+            <AddNewProduct />
+          }
 
-      {productToUpdate &&
+          {productToUpdate &&
 
-        <UpdateProduct name={productToUpdate.name} imageUrl={productToUpdate.imageUrl} price={productToUpdate.price} _id={productToUpdate._id} category={productToUpdate.category} animalTYpe={productToUpdate.animalTYpe} />
-      }
-    </div>
+            <UpdateProduct name={productToUpdate.name} imageUrl={productToUpdate.imageUrl} price={productToUpdate.price} _id={productToUpdate._id} category={productToUpdate.category} animalTYpe={productToUpdate.animalTYpe} />
+          }
+        </div>}
+      />
+      <Route path='contact' element={<Contact />} />
+      <Route path='about' element={<About />} />
+
+
+    </Routes>
   )
 }
 

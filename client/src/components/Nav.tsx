@@ -7,6 +7,7 @@ import { ToggleCart, ToggleLogin, ToggleSignUp } from "../redux/popUPSlice";
 import { RootState } from "../redux";
 import { LiaUserShieldSolid } from "react-icons/lia";
 import { setAddProduct } from "../redux/admin";
+import { NavLink } from "react-router-dom";
 function Nav() {
 
 
@@ -47,9 +48,9 @@ function Nav() {
                         <BsSearch />
                     </div>
                     <div className='hidden sm:flex justify-between w-[20%] '>
-                        <p className=''><span>about</span> </p>
+                        <NavLink to={'/about'} className=''><span>about</span> </NavLink>
                         <p className=''><span>our services</span> </p>
-                        <p className=''><span className=" ">contactUs </span> </p>
+                        <NavLink to={"/contact"} className=''><span className=" ">contactUs </span> </NavLink>
                     </div>
                     <div className="flex relative mr-10">
                         {admin ? <LiaUserShieldSolid className=" w-10 h-10 px-1 text-green-400" /> : user ? <FaUser className=" w-8 h-8 px-1 text-green-400" /> : <FaUserLock className=" w-8 h-8 px-1 text-green-400" onClick={() => { dispatch(ToggleSignUp()) }} />}
