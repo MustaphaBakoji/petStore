@@ -58,6 +58,7 @@ function Home() {
     const product = useSelector((state: RootState) => state.productReducer.product)
     const products = useSelector((state: RootState) => state.productsReducer)
 
+
     return (
         <div className=' absolute top-24 sm:left-72 grid-cols-2 grid sm:grid-cols-3 place-items-center gap-x-3 sm:gap-x-20 gap-y-3 ml-8'
 

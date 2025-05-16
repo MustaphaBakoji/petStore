@@ -8,6 +8,7 @@ import { RootState } from "../redux";
 import { LiaUserShieldSolid } from "react-icons/lia";
 import { setAddProduct } from "../redux/admin";
 import { NavLink } from "react-router-dom";
+import { searchProduct } from "../redux/productsSlice";
 function Nav() {
 
 
@@ -44,6 +45,11 @@ function Nav() {
                             type="text"
                             className='w-40 h-8 rounded-lg pl-2 outline-none'
                             placeholder='Search...'
+                            onChange={(e) => {
+                                console.log(e.target.value);
+
+                                dispatch(searchProduct(e.target.value))
+                            }}
                         />
                         <BsSearch />
                     </div>
