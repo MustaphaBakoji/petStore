@@ -18,7 +18,7 @@ const Contact = () => {
                 className="max-w-3xl mx-auto"
             >
                 <h2 className="flex items-center justify-center gap-2 text-4xl font-extrabold mb-6 text-center">
-                    <FaPaw className="text-pink-500" />
+                    <FaPaw className="text-green-500" />
                     Get in Touch
                 </h2>
                 <p className="text-gray-600 mb-10 text-center max-w-lg mx-auto">
@@ -34,7 +34,7 @@ const Contact = () => {
                         className="space-y-5 p-6 rounded-2xl bg-pink-50/50 border shadow-sm"
                     >
                         <div className="flex items-center gap-4">
-                            <FaEnvelope className="text-xl text-pink-600" />
+                            <FaEnvelope className="text-xl text-green-500" />
                             <span>support@petstore.com</span>
                         </div>
                         <div className="flex items-center gap-4">
@@ -73,7 +73,7 @@ const Contact = () => {
                         />
                         <button
                             type="submit"
-                            className="w-full flex items-center justify-center gap-2 bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 rounded-xl transition"
+                            className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-xl transition"
                         >
                             <FaPaw />
                             Send Woof!

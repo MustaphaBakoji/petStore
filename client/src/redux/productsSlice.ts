@@ -14,7 +14,11 @@ const productSlice = createSlice({
             const searchKey = action.payload.toLowerCase();
             // Filter products where name matches searchKey (case-insensitive)
             const result = state.filter(
-                (product) => product.name.toLowerCase() === searchKey
+                (product) => {
+                    console.log(product.name.toLowerCase());
+
+                    return product.name.toLowerCase().includes(searchKey);
+                }
             );
             console.log(result);
 

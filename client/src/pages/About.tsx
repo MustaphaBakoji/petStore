@@ -12,7 +12,7 @@ const About = () => {
                 className="max-w-5xl mx-auto text-center"
             >
                 <h1 className="flex justify-center items-center gap-2 text-4xl font-bold mb-4">
-                    <FaPaw className="text-pink-500" />
+                    <FaPaw className="text-green-500" />
                     About Our Pet Store
                 </h1>
                 <p className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
@@ -25,9 +25,9 @@ const About = () => {
                     {/* Our Story */}
                     <motion.div
                         whileHover={{ scale: 1.05 }}
-                        className="p-6 rounded-2xl shadow-md border bg-pink-50 hover:shadow-xl transition"
+                        className="p-6 rounded-2xl shadow-md border bg-green-50 hover:shadow-xl transition"
                     >
-                        <FaStore className="text-pink-600 text-4xl mb-4 mx-auto" />
+                        <FaStore className="text-green-500 text-4xl mb-4 mx-auto" />
                         <h3 className="text-xl font-semibold mb-2">Our Story</h3>
                         <p className="text-gray-700">
                             Founded in 2020, our store began with a simple idea — make high-quality pet care accessible and fun.
@@ -38,9 +38,9 @@ const About = () => {
                     {/* What We Offer */}
                     <motion.div
                         whileHover={{ scale: 1.05 }}
-                        className="p-6 rounded-2xl shadow-md border bg-pink-50 hover:shadow-xl transition"
+                        className="p-6 rounded-2xl shadow-md border bg-green-50 hover:shadow-xl transition"
                     >
-                        <FaDog className="text-yellow-500 text-4xl mb-4 mx-auto" />
+                        <FaDog className="text-green-500 text-4xl mb-4 mx-auto" />
                         <h3 className="text-xl font-semibold mb-2">What We Offer</h3>
                         <p className="text-gray-700">
                             Toys, treats, grooming products, pet food, accessories, and expert advice — all tailored for your furry
@@ -51,9 +51,9 @@ const About = () => {
                     {/* Our Promise */}
                     <motion.div
                         whileHover={{ scale: 1.05 }}
-                        className="p-6 rounded-2xl shadow-md border bg-pink-50 hover:shadow-xl transition"
+                        className="p-6 rounded-2xl shadow-md border bg-green-50 hover:shadow-xl transition"
                     >
-                        <FaCat className="text-purple-600 text-4xl mb-4 mx-auto" />
+                        <FaCat className="text-green-500 text-4xl mb-4 mx-auto" />
                         <h3 className="text-xl font-semibold mb-2">Our Promise</h3>
                         <p className="text-gray-700">
                             We care deeply about your pets. That’s why we only offer trusted brands, responsible sourcing,
