@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import { shuffle } from '../utils/shuppler'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setProducts } from '../redux/productsSlice'
+import { MdLogout } from 'react-icons/md'
+import { logOut } from '../redux/userSlice'
+import { RootState } from '../redux'
 
 function NavItems() {
     const dispatch = useDispatch()
     const animals: string[] = ["cats", "dogs", "fish", "birds"]
+    const { user } = useSelector((state: RootState) => (state.userReducer))
+    const { admin } = useSelector((state: RootState) => (state.adminReducer))
 
     const [food, setfood] = useState<boolean>(false)
     const [accessories, setaccessories] = useState<boolean>(false)
@@ -114,6 +119,16 @@ function NavItems() {
 
 
             >{animal}</p>))}
+            {(user || admin) && <span className=' flex mt-10 items-center '
+                onClick={() => {
+                    fetch("https://petstore-des0.onrender.com/api/users/logout").then(() => {
+                        dispatch(logOut())
+                    }).catch((e) => {
+                        console.log(e);
+
+                    })
+
+                }}> <MdLogout className=' text-green-500 w-8 h-8 mr-2' /> <p>logout</p></span>}
         </nav>
     )
 }
